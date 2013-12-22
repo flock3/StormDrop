@@ -13,8 +13,7 @@
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="navbar-fixed-top.css" rel="stylesheet">
+    <?php if($nav == 'reports'): echo '<link href="/css/report.css" rel="stylesheet">'; endif; ?>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -33,13 +32,13 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="/hosts/">Hosts</a></li>
-                <li><a href="/scans/">Reports</a></li>
+                <li<?php if($nav == 'home') echo ' class="active"'; ?>><a href="/">Home</a></li>
+                <li<?php if($nav == 'hosts') echo ' class="active"'; ?>><a href="/hosts/">Hosts</a></li>
+                <li<?php if($nav == 'reports') echo ' class="active"'; ?>><a href="/reports/">Reports</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/reset/">Reset Data</a></li>
+                <li<?php if($nav == 'reset') echo ' class="active"'; ?>><a href="/reset/">Reset Data</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

@@ -26,11 +26,9 @@ while($thereAreReportsToRetrieve)
 
 //        unset($results);
 
-        $data = simplexml_load_file(__DIR__ . '/web/report.xml');
+        $data = simplexml_load_file(__DIR__ . '/web/report2.xml');
 
-        $report = $data->report->report;
-
-        $reportArray = xmlToArray($report);
+        $reportArray = xmlToArray($data);
 
         $results = serialize($reportArray);
 
@@ -60,6 +58,7 @@ while($thereAreReportsToRetrieve)
  * @return array
  */
 function xmlToArray($xml, $root = true) {
+
     if (!$xml->children()) {
         return (string)$xml;
     }

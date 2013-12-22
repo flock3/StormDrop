@@ -1,0 +1,24 @@
+.lowInterest
+{
+    display: none;
+}
+
+.portOnly
+{
+    display: none;
+}
+
+.descriptionTd
+{
+    cursor: pointer;
+}
+
+.hide
+{
+    display: none;
+}
+
+.assetHeader
+{
+    cursor: pointer;
+}
