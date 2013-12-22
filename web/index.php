@@ -26,10 +26,22 @@ $app->get('/', function() use($app)
 {
     $hostService = $app->serviceLoader->get('Hosts'); /* @var Service\Hosts */
     $scanService = $app->serviceLoader->get('Scans'); /* @var Service\Scans */
-    $vulnService = $app->serviceLoader->get('Vulns'); /* @var Service\Vulns */
+    $reportService = $app->serviceLoader->get('Reports'); /* @var Service\Reports */
 
+    $hosts = $hostService->getHosts();
+    $scans = $scanService->getScans();
+    $reports = $reportService->getAvailableReports();
 
-    $app->render('index.php');
+    $app->render('index.php', compact('hosts', 'scans', 'reports'));
+});
+
+$app->get('/hosts', function() use($app)
+{
+    $hostService = $app->serviceLoader->get('Hosts'); /* @var Service\Hosts */
+
+    $hosts = $hostService->getHosts();
+
+    $app->render('hosts.php', compact('hosts'));
 });
 
 $app->run();

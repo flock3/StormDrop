@@ -35,7 +35,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
                 <li><a href="/hosts/">Hosts</a></li>
-                <li><a href="/scans/">Scans</a></li>
+                <li><a href="/scans/">Reports</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
