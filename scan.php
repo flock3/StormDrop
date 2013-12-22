@@ -28,9 +28,14 @@ foreach($hosts as &$host)
     $foundHosts[] = $host['ipAddress'];
 }
 
-$xml = 'omp -iX \'<create_target><name>Found Targets (' . date('d/m/Y') . ')</name><hosts>' . implode(',', $foundHosts) . '</hosts></create_target>\'';
+$xml = 'omp -X \'<create_target><name>Found Targets (' . date('d/m/Y') . ')</name><hosts>' . implode(',', $foundHosts) . '</hosts></create_target>\'';
+
+echo 'Running: ' . $xml . PHP_EOL;
 
 $response = exec($xml);
+
+echo 'Response: ' . $response . PHP_EOL;
+
 $xml = simplexml_load_string($response);
 
 if(!isset($xml->attributes()->id))
@@ -51,6 +56,8 @@ $taskXml = '<create_task>
   <target id="' . $targetId .'"/>
 </create_task>';
 
+echo 'Running: ' . $taskXml . PHP_EOL;
+
 $taskResponse = exec('omp -X \'' . $taskXml . '\'');
 
 $xml = simplexml_load_string($taskResponse);
@@ -66,7 +73,11 @@ $pdo->exec('INSERT INTO scans (taskId,targetId) VALUES(' . $pdo->quote($taskId) 
 
 $taskStartXml = '<resume_or_start_task task_id="' . $taskId . '" />';
 
+echo 'Running: ' . $taskStartXml . PHP_EOL;
+
 $taskStartResponse = exec('omp -X \'' . $taskStartXml . '\'');
+
+echo 'Returned: ' . $taskStartResponse . PHP_EOL;
 
 $xml = simplexml_load_string($taskStartResponse);
 
