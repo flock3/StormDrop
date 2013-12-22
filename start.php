@@ -9,17 +9,17 @@ require(__DIR__ . '/Scanning/CheckMyPid.php');
 require(__DIR__ . '/autoloader.php');
 require(__DIR__ . '/database.php');
 
-$network = gethostbyname(gethostname());
+$network = exec('hostname --all-ip-addresses');
 
 if(empty($network))
 {
-    $network = exec('hostname --all-ip-addresses');
-
-    if(empty($network))
-    {
-        throw new RuntimeException('Could not a network hostname.');
-    }
+    throw new RuntimeException('Could not a network hostname.');
 }
+
+$network = explode(' ', $network);
+
+$network = $network[0];
+
 
 $addressParts = explode('.', $network);
 
