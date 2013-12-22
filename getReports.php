@@ -1,5 +1,7 @@
 <?php
 
+require(__DIR__ . '/Scanning/CheckMyPid.php');
+
 require(__DIR__ . '/autoloader.php');
 require(__DIR__ . '/database.php');
 
@@ -18,15 +20,19 @@ while($thereAreReportsToRetrieve)
 {
     foreach($scans as $key => $scan)
     {
-//        $command = 'omp -X \'<get_reports report_id="' . $scan['reportId'] . '" format_id="' . $config['openvas']['reportOutputId'] . '" />\'';
-//
-//        $results = exec($command);
+        $command = 'omp -X \'<get_reports report_id="' . $scan['reportId'] . '" format_id="' . $config['openvas']['reportOutputId'] . '" />\'';
 
-//        $data = simplexml_load_string($results);
+        $results = exec($command);
 
-//        unset($results);
+        $data = simplexml_load_string($results);
 
-        $data = simplexml_load_file(__DIR__ . '/web/report2.xml');
+        $report = (string)$data->report;
+
+        $report = base64_decode($report);
+
+        $data = simplexml_load_string($report);
+
+        unset($results, $report);
 
         $reportArray = xmlToArray($data);
 

@@ -9,10 +9,18 @@
  * Scan will start scan
  */
 
+require(__DIR__ . '/Scanning/CheckMyPid.php');
+
 require(__DIR__ . '/autoloader.php');
 require(__DIR__ . '/database.php');
 
 $hosts = $pdo->query('select * from hosts')->fetchAll(PDO::FETCH_ASSOC);
+
+if(empty($hosts))
+{
+    echo 'There are not any hosts yet, I won\'t scan just yet..' . PHP_EOL;
+    exit;
+}
 
 $foundHosts = array();
 foreach($hosts as &$host)

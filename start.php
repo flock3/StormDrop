@@ -1,9 +1,10 @@
 <?php
 
+require(__DIR__ . '/Scanning/CheckMyPid.php');
+
 /**
  * Scan network to retrieve hosts and services information.
  */
-ini_set('error_reporting', E_ALL & ~E_WARNING & ~E_STRICT & ~E_DEPRECATED);
 
 require(__DIR__ . '/autoloader.php');
 require(__DIR__ . '/database.php');

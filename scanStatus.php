@@ -1,5 +1,7 @@
 <?php
 
+require(__DIR__ . '/Scanning/CheckMyPid.php');
+
 require(__DIR__ . '/autoloader.php');
 require(__DIR__ . '/database.php');
 

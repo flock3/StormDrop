@@ -1,0 +1,4 @@
+* * * * * /usr/bin/php /var/www/getReports.php # Convert completed scans into reports
+* * * * * /usr/bin/php /var/www/scanStatus.php # Update the status of the scan in the DB
+* * * * * /usr/bin/php /var/www/scan.php # Scan hosts with openVas (only works if > 0 hosts)
+* * * * * /usr/bin/php /var/www/start.php # Find hosts with nmap (only works if < 1 hosts)
